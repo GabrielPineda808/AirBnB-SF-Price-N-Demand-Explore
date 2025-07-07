@@ -1,10 +1,11 @@
 import pandas as pd
 import argparse
-import os
 
-#Define the data paths
-raw_data = os.path.join("data", "raw-data", "listings.csv")
-processed_data = os.path.join("data", "cleaned-data", "listings_cleaned.csv")
+def get_args():
+    parser = argparse.ArgumentParser(description="Run Airbnb ETL pipeline.")
+    parser.add_argument("--input", default="data/raw-data/listings.csv", help="Path to input CSV file.") #asking for raw data input file path in CLI
+    parser.add_argument("--output", default="data/cleaned-data/listings_cleaned.csv", help="Path to save cleaned CSV file.")#asking for cleaned data output fiel path in CLI
+    return parser.parse_args()
 
 #load the raw data into a pandas dataframe
 def load_data(file_path):
@@ -57,14 +58,16 @@ def save_data(df,file_path):
     df.to_csv(file_path, index=False)
     print(f"Saved cleaned data into {file_path}.")
 
-def run_etl():
+def run_etl(input_path, output_path):
 
-    df_raw = load_data(raw_data) #loading data to df
+    df_raw = load_data(input_path) #loading data to df
     df_cleaned = clean_data(df_raw) #cleaning data
-    save_data(df_cleaned, processed_data) #writing to csv
+    save_data(df_cleaned, output_path) #writing to csv
 
 if __name__ == "__main__":
-    run_etl()
+    args = get_args()
+    run_etl(args.input, args.output)
+
 
 
 
