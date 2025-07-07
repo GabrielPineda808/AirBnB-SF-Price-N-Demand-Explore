@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+import argparse
 import os
 
 #Define the data paths
@@ -52,18 +52,19 @@ def clean_data(df):
     print(f"Cleaned data contains {len(df)} rows and {len(df.columns)} columns.")
     return df
 
-def save_data(df):
-    print(f"Saving clean data into {processed_data}...")
-    df.to_csv(processed_data, index=False)
-    print(f"Saved cleaned data into {processed_data}.")
+def save_data(df,file_path):
+    print(f"Saving clean data into {file_path}...")
+    df.to_csv(file_path, index=False)
+    print(f"Saved cleaned data into {file_path}.")
 
 def run_etl():
 
     df_raw = load_data(raw_data) #loading data to df
     df_cleaned = clean_data(df_raw) #cleaning data
-    save_data(df_cleaned) #writing to csv
-
-run_etl()
+    save_data(df_cleaned, processed_data) #writing to csv
+    
+if __name__ == "__main__":
+    run_etl()
 
 
 
