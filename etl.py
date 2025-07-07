@@ -38,3 +38,12 @@ def clean_data(df):
         .replace('[\$,]', '', regex=True) #removes $ symbol and commas in price string
         .astype(float)
     )
+
+    #removing rows with unrealistic price or nights
+    df = df[(df["minimum_nights"] <= 30) & (df["price"] < 1000)]
+
+    # fill missing bedrooms or bathrooms with the median
+    df["bedrooms"] = df["bedrooms"].fillna(df["bedrooms"].median())
+    df["bathrooms"] = df["bathrooms"].fillna(df["bathrooms"].median())
+
+    
