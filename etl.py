@@ -62,7 +62,7 @@ def run_etl():
     df_raw = load_data(raw_data) #loading data to df
     df_cleaned = clean_data(df_raw) #cleaning data
     save_data(df_cleaned, processed_data) #writing to csv
-    
+
 if __name__ == "__main__":
     run_etl()
 
