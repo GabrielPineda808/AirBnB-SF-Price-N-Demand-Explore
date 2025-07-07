@@ -1,0 +1,20 @@
+airbnb-price-n-demand-explore/
+├── data/
+│   ├── raw/
+│   │   └── listings.csv       # from Inside Airbnb
+│   └── cleaned/
+│       └── listings_cleaned.csv
+│
+├── notebooks/
+│   └── etl_airbnb.ipynb       # optional if you want to use Jupyter
+│
+├── src/
+│   └── etl.py                 # main ETL logic (Python script version)
+│
+├── dashboard/
+│   └── dashboard.twbx         # Tableau/Power BI file
+│
+├── README.md
+├── .gitignore
+├── requirements.txt
+└── main.py                    # entry point if needed
