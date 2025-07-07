@@ -16,3 +16,25 @@ def load_data():
     print(f"Loaded {len(df)} rows and {len(df.columns)} columns.")
     return df
 
+def clean_data(df):
+    print(f"Cleaning data from {raw_data}...")
+
+    #keeping columns that are relevant
+    columns = [
+        "id", "name", "host_id", "neighborhood_cleansed", "room_type",
+        "price", "minimum_nights", "number_of_reviews", "availabilitiy_365",
+        "bedrooms", "bathrooms", "review_scores_rating"
+    ]
+
+    #reassignging data frame to only contain data from relevant columns
+    df = df[columns]
+
+    #remove rows with missing prices
+    df = df[df["price"].notna()]
+
+    #convert price from a string to a float
+    df["price"] = (
+        df["price"]
+        .replace('[\$,]', '', regex=True) #removes $ symbol and commas in price string
+        .astype(float)
+    )
