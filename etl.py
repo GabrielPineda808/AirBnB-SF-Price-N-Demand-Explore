@@ -46,4 +46,8 @@ def clean_data(df):
     df["bedrooms"] = df["bedrooms"].fillna(df["bedrooms"].median())
     df["bathrooms"] = df["bathrooms"].fillna(df["bathrooms"].median())
 
-    
+    #create a new column for price per bedroom
+    df["price_per_room"] = df["price"] / df["bedrooms"]
+
+    print(f"Cleaned data contains {len(df)} rows.")
+    return df
