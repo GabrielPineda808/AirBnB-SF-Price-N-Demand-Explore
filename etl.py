@@ -51,3 +51,21 @@ def clean_data(df):
 
     print(f"Cleaned data contains {len(df)} rows.")
     return df
+
+def save_data(df):
+    print(f"Saving clean data into {processed_data}...")
+    df.to_csv(processed_data, index=False)
+    print(f"Saved cleaned data into {processed_data}.")
+
+
+
+
+
+
+
+
+
+
+
+
+
