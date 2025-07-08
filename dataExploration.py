@@ -27,3 +27,20 @@ plt.xlabel("Average Price ($)")
 plt.tight_layout()
 plt.show()
 
+#Price by Neighbourhood
+
+plt.figure(figsize=(12,6)) #creating empty plot figure
+
+top_neighbourhoods = df["neighbourhood_cleansed"].value_counts().nlargest(10).index #top 10 neighbourhoods with the most listings
+
+filtered_df = df[df["neighbourhood_cleansed"].isin(top_neighbourhoods)] #new df that only contains data of the top 10 neighbourhood by listings
+
+sns.boxplot(x="neighbourhood_cleansed", y="price", data=filtered_df) #boxplot
+
+plt.title("Price Distribution by Neighborhood (Top 10)")
+plt.xlabel("Neighborhood")
+plt.ylabel("Price ($)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
