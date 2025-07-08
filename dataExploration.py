@@ -44,3 +44,16 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
+#Avaliablity vs price
+
+plt.figure(figsize=(8,5))
+
+sns.scatterplot(data=df, x="availability_365", y="price", alpha=0.3)
+
+plt.title("Availability vs. Price")
+plt.xlabel("Availability (days/year)")
+plt.ylabel("Price ($)")
+plt.tight_layout()
+plt.show()
+
+
