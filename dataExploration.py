@@ -69,3 +69,12 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
+#reviews per month vs
+
+plt.figure(figsize=(8, 5))
+sns.scatterplot(data=df, x="reviews_per_month", y="price", alpha=0.4)
+plt.title("Reviews per Month vs. Price")
+plt.xlabel("Reviews per Month")
+plt.ylabel("Price ($)")
+plt.tight_layout()
+plt.show()
