@@ -50,6 +50,15 @@ def clean_data(df):
     #create a new column for price per bedroom
     df["price_per_room"] = df["price"] / df["bedrooms"]
 
+    # Check remaining null values
+    null_summary = df.isnull().sum()
+    print("Missing values: ", null_summary[null_summary > 0])
+
+    # Drop duplicates if any
+    df = df.drop_duplicates()
+    print("Shape after dropping duplicates:", df.shape)
+
+
     print(f"Cleaned data contains {len(df)} rows and {len(df.columns)} columns.")
     return df
 
