@@ -21,7 +21,7 @@ plt.show()
 
 room_price =df.groupby("room_type")["price"].mean().sort_values() #grabbing the average grouped by room and sorted by price ascending
 
-room_price.plot(kind="barh", title="Average Price by Room Type") #horizontal bar graph showing price per room type
+room_price.plot(kind="barh", title="Average Price by Room Type") #horizontal bar graph showing  average price per room type
 
 plt.xlabel("Average Price ($)")
 plt.tight_layout()
