@@ -24,7 +24,8 @@ def clean_data(df):
     relevant_columns = [
         "id", "name", "host_id", "neighbourhood_cleansed", "room_type",
         "price", "minimum_nights", "number_of_reviews", "availability_365",
-        "bedrooms", "bathrooms", "review_scores_rating"
+        "bedrooms", "bathrooms", "review_scores_rating", "accommodates",
+        "reviews_per_month", "host_since"
     ]
 
     #reassignging data frame to only contain data from relevant columns
@@ -48,7 +49,24 @@ def clean_data(df):
     df["bathrooms"] = df["bathrooms"].fillna(df["bathrooms"].median())
 
     #create a new column for price per bedroom
-    df["price_per_room"] = df["price"] / df["bedrooms"]
+    df["price_per_bedroom"] = df["price"] / df["bedrooms"]
+
+    #create a new column for price per bathroom
+    df["price_per_bathroom"] = df["price"] / df["bathrooms"]
+
+    #price per person column
+    df["price_per_person"] = df["price"] / df["accommodates"]
+
+    #reviews per month column
+    df["reviews_per_month"] = df["reviews_per_month"].fillna(0)
+
+    #adding host experience
+    df["host_since"] = pd.to_datetime(df["host_since"], errors="coerce")
+    df["host_experience_years"] = (pd.Timestamp("now") - df["host_since"]).dt.days / 365
+    df["experienced_host"] = df["host_experience_years"] >= 3
+
+    #create a column to flag for luxury listings
+    df["luxury_flag"] = df["price"] > 500
 
     # Check remaining null values
     null_summary = df.isnull().sum()
