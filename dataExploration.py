@@ -56,4 +56,16 @@ plt.ylabel("Price ($)")
 plt.tight_layout()
 plt.show()
 
+#luxury listings per neighborhood
+
+luxury_counts = df[df["luxury_flag"]].groupby("neighbourhood_cleansed")["id"].count().sort_values(ascending=False).head(10)
+
+plt.figure(figsize=(10, 5))
+luxury_counts.plot(kind="bar")
+plt.title("Top 10 Neighborhoods with Luxury Listings (Price > $500)")
+plt.ylabel("Number of Listings")
+plt.xlabel("Neighborhood")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 
