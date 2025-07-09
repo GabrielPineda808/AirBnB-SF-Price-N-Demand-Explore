@@ -82,7 +82,7 @@ plt.show()
 #avg price per person by room type
 
 plt.figure(figsize=(8, 5))
-price_per_person =df.groupby("room_type")["price"].mean().sort_values()
+df.groupby("room_type")["price_per_person"].mean().sort_values().plot(kind="bar", title="Price per Person by Room Type") #bar graph showing avg price per person by room type
 plt.title("Price per Person by Room Type")
 plt.ylabel("Price per Person ($)")
 plt.xlabel("Room Type")
