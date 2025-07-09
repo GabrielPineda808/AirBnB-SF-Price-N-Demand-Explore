@@ -78,3 +78,13 @@ plt.xlabel("Reviews per Month")
 plt.ylabel("Price ($)")
 plt.tight_layout()
 plt.show()
+
+#avg price per person by room type
+
+plt.figure(figsize=(8, 5))
+price_per_person =df.groupby("room_type")["price"].mean().sort_values()
+plt.title("Price per Person by Room Type")
+plt.ylabel("Price per Person ($)")
+plt.xlabel("Room Type")
+plt.tight_layout()
+plt.show()
