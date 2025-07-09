@@ -50,6 +50,11 @@ def clean_data(df):
 
     #create a new column for price per bedroom
     df["price_per_bedroom"] = df["price"] / df["bedrooms"]
+    df["price_per_bedroom"] = (
+        df["price_per_bedroom"]
+        .replace({r"[\$,]"}, '', regex=True) #removes $ symbol and commas in price string
+        .astype(float)
+    )
 
     #create a new column for price per bathroom
     df["price_per_bathroom"] = df["price"] / df["bathrooms"]
