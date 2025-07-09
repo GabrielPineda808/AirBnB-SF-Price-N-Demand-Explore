@@ -88,3 +88,11 @@ plt.ylabel("Price per Person ($)")
 plt.xlabel("Room Type")
 plt.tight_layout()
 plt.show()
+
+#heatmap to show correlations between columns 
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(df[["price", "bedrooms", "bathrooms", "reviews_per_month", "availability_365", "price_per_bedroom", "price_per_bathroom"]].corr(), annot=True, cmap="coolwarm")
+plt.title("Correlation Matrix")
+plt.tight_layout()
+plt.show()
